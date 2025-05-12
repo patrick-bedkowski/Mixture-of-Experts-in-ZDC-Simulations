@@ -57,6 +57,7 @@ If you wish to see the training progress in Weights&Biases webtool, you can set 
 lines input your wandb data account:
 
 ```python
+wandb.login("<your-wandb-api-key>")
 run = wandb.init(
     project="<your-project-name>",  # create project on W&B web tool and input its name here
     entity="<your-profile-name>",

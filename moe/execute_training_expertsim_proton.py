@@ -404,6 +404,7 @@ test_dataset = TensorDataset(torch.tensor(x_test), torch.tensor(x_test_2),
 test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
 if SAVE_EXPERIMENT_DATA:
+    wandb.login("<your-wandb-api-key>")
     wandb.finish()
     run = wandb.init(
         project="<your-project-name>",
