@@ -30,8 +30,11 @@ In order to run all experiments, it is necessary to build datasets from original
 
 Necessary data to run the experiments are the following:
 - dataset with 9 conditional variables describing the: Mass, Energy, Charge, 3 vectors for momenta and 3 vectors for coordinates
+  - available under this link: [data_cond](https://anonymized-data-for-review.s3.eu-west-1.amazonaws.com/data_cond_photonsum_proton_1_2312.pkl)
 - dataset with images originating from Proton ZDC device
+  - available under this link: [data](https://anonymized-data-for-review.s3.eu-west-1.amazonaws.com/data_proton_photonsum_proton_1_2312.pkl) 
 - dataset with images originating from Neutron ZDC device
+  - available under this link: [data_coord](https://anonymized-data-for-review.s3.eu-west-1.amazonaws.com/data_coord_proton_photonsum_proton_1_2312.pkl) 
 
 ### Original files
 
@@ -41,7 +44,28 @@ The below files explain the order of steps that need to be performed to run the 
 
 ### Run training
 
-In order to facilitate training, one need to generate input datasets needed for the simulation. Then run the python file:
+In order to facilitate training, one need to download input datasets needed for the simulation and save them locally. Later
+modify these variables and set the path to the datasets in the `execute_training_expertsim_proton.py` file:
+
+```python
+DATA_IMAGES_PATH = "data_proton_photonsum_proton_1_2312.pkl"
+DATA_COND_PATH = "data_cond_photonsum_proton_1_2312.pkl"
+DATA_POSITIONS_PATH = "data_coord_proton_photonsum_proton_1_2312.pkl"
+```
+
+If you wish to see the training progress in Weights&Biases webtool, you can set the variable `SAVE_EXPERIMENT_DATA = True`, and in the following
+lines input your wandb data account:
+
+```python
+run = wandb.init(
+    project="<your-project-name>",  # create project on W&B web tool and input its name here
+    entity="<your-profile-name>",
+    name=wandb_run_name,
+    config=config_wandb,
+)
+```
+
+Then run the python file:
 
 ```python
 python3 execute_training_expertsim_proton.py
